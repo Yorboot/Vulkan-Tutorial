@@ -1,14 +1,23 @@
+#include <cstdint>
 #include <memory>
 #if defined(__INTELLISENSE__) || !defined(USE_CPP20_MODULES)
-#	include <vulkan/vulkan_raii.hpp>
+# if(WIN32)
+#	include <C:/VulkanSDK/1.4.363.0/include/vulkan/vulkan_raii.hpp>
+#	include <C:/glfw-3.5.1.bin.WIN64/include/GLFW/glfw3.h>
+#else
+#	include <GLFW/glfw3.h>
+#	include<vulkan/vulkan_raii.hpp>
+#endif
 #else
 import vulkan_hpp;
 #endif
-#include <GLFW/glfw3.h>
 
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
+
+//Linux build command:
+//cd ~/Applications/Vulkan-Tutorial/attachments/template && cmake -S . -B build -G Ninja -DSLANGC_EXECUTABLE="$(command -v slangc)" && cmake --build build && ./build/VulkanTutorial/VulkanTutorial
 
 const uint32_t WIDTH  = 800;
 const uint32_t HEIGHT = 600;
