@@ -5,7 +5,7 @@ set (TEMPLATE_NAME "VulkanTutorial")
 project (${TEMPLATE_NAME})
 
 # Add option to enable/disable C++ 20 module
-option(ENABLE_CPP20_MODULE "Enable C++ 20 module support for Vulkan" OFF)
+option(ENABLE_CPP20_MODULE "Enable C++ 20 module support for Vulkan" ON)
 
 # Enable C++ module dependency scanning only if C++ 20 module is enabled
 if(ENABLE_CPP20_MODULE)
@@ -23,6 +23,9 @@ find_package(KTX REQUIRED)
 
 # Set up Vulkan C++ module only if enabled
 if(ENABLE_CPP20_MODULE)
+  set(CMAKE_CXX_STANDARD 20)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+  set(CMAKE_CXX_EXTENSIONS OFF)
   add_library(VulkanCppModule)
   add_library(Vulkan::cppm ALIAS VulkanCppModule)
 
